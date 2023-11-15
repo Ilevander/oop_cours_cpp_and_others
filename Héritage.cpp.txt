@@ -1,0 +1,55 @@
+/*********Header********/
+
+#include<iostream>
+#include<cstring>
+using namespace std;
+
+class Rectangle
+{
+private:
+    int longeur;
+    int largeur;
+public:
+        Rectangle();
+        void Affiche();
+};
+
+class Carre:public Rectangle
+{
+  public:
+      //void AfficheCarre();
+      void Affiche();
+};
+/**************implémentation.cpp***************/
+
+#include "heritage.h"
+
+Rectangle::Rectangle()
+{
+    longeur=12;
+    largeur=10;
+}
+
+void Rectangle::Affiche()
+{
+    cout << "C'est un rectangle de :" << longeur << ","<<largeur << endl;
+}
+
+void Carre::Affiche()
+{
+    cout << "C'est un carré" << endl;
+
+}
+
+/*********main.cpp********/
+
+#include "heritage.h"
+
+int main()
+{
+   Carre objt;
+
+   objt.Affiche();
+
+    return 0;
+}

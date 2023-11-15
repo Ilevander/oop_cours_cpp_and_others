@@ -1,0 +1,144 @@
+#include <iostream>
+
+using namespace std;
+
+//define the class
+
+class date
+{
+private:
+	int jour;
+	int mois;
+	int annee;
+
+public:
+	date();
+	date(int,int,int);
+	int getJour();
+	int getMois();
+	int getAnnee();
+	string ToString();
+	bool infeg(date &);
+	void affiche();
+};
+	
+class temps
+{
+	private:
+		int heure;
+		int minutes;
+		int secondes;
+		date dt;
+    public:
+	temps();
+	temps(date ,int,int,int);
+    void affich();
+};
+
+temps::temps()
+{ //On ava appeler le kconstructeur par défaut de la date tout en appelant just
+	//le nom de son attrubut temps::temp::dt()(){.....}
+//Sinon si on le marque pas il va l'appeler automatiquement juste comme cela :
+// temps:temps(){...}	
+	heure=00;
+	minutes=00;
+	secondes=00;
+}
+
+temps::temps(date & d,int hr,int mnt,int scd):dt(d)//ici pas besoin de mentionner '&' car si on la crée pas on crée une copie local de mémoire
+{//Pour éviter la copie local , on doit mentionrer l'adresse '&'
+	if (hr>1 && hr<=24 && mnt>0 && mnt<=60 && scd>0 && scd<=60 )
+	{
+		heure=hr;
+		minutes=mnt;
+		secondes=scd;
+		dt=d;
+	}
+	else 
+		cout << "Erreur de saisi ."<< endl;
+}
+
+void temps::affich()
+{
+	dt.affich();
+	cout << heure << ":" << minutes << ":" << secondes << endl;
+}
+
+//Implémenter les constructeurs :
+date::date()
+{
+	jour=01;
+	mois=01;
+	annee=1970;
+}
+
+date::date(int jr,int ms,int an)
+{
+	if (jr>0 && jr<=31 && ms>0 && ms<=12 && an>0)
+	{
+		jour=jr;
+		mois=ms;
+		annee=an;
+	}
+	 else
+	 	 {
+	 	 	jour=00;
+	        mois=00;
+	        annee=0000;
+            cout << "Réssayer d'entrer les données"<< endl;
+            cout << "erreur de saisi \n";
+	 	 }
+}
+
+int date::getJour()
+{
+	return jour;
+}
+
+int date::getMois()
+{
+	return mois;
+}
+
+int date::getAnnee()
+{
+	return annee;
+}
+
+
+string date::ToString()
+{
+  return to_string(jour) + "/" + to_string(mois) + "/" + to_string(annee);
+}
+
+bool infeg(date A)
+{
+	if (annee>B.annee)
+	   return false;
+	else if (annee==B.annee && mois>B.mois)
+		return false;
+	else if (annee==B.annee && mois==B.mois && jour>B.jour)
+		return false;
+	else  
+		return true;
+}
+
+
+void date:affiche()
+{
+	cout << jour << "/" << mois << "/" << annee;
+}
+//le do while de se fait pas à l'intérieur de la classe
+
+int main(int argc, char const *argv[])
+{
+	
+	date A;
+	A.affiche();
+	date B(10,10,2002);
+	B.affiche();
+	cout << B.ToString()<< endl;
+	cout << B.infeg(A);
+
+	return 0;
+}
